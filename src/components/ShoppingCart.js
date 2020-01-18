@@ -3,6 +3,9 @@ import React from 'react';
 // Components
 import Item from './ShoppingCartItem';
 
+//contexts
+import CartContext from '../contexts/CartContext'
+
 const ShoppingCart = props => {
 	const getCartTotal = () => {
 		return props.cart.reduce((acc, value) => {
