@@ -16,20 +16,22 @@ function App() {
   const [cart, setCart] = useState([]);
 
   const addItem = item => {
-    // add the given item to the cart
+    setCart([...cart, item]);
   };
 
   return (
     //reassign value prop to an array of the products and an addItem function
-    <ProductContext.Provider value={value}>
-      <div className="App">
-        <Navigation cart={cart} />
+    <ProductContext.Provider value={[products, addItem]}>
+      <CartContext.Provider value={cart}>
+        <div className="App">
+          <Navigation cart={cart} />
+ 
+          {/* Routes */}
 
-        {/* Routes */}
-
-        <Route exact path="/" component={Products} />
-        <Route path="/cart" render={() => <ShoppingCart cart={cart} />} />
-      </div>
+          <Route exact path="/" component={Products} />
+          <Route path="/cart" render={() => <ShoppingCart cart={cart} />} />
+        </div>
+      </CartContext.Provider>
     </ProductContext.Provider>
   );
 }
